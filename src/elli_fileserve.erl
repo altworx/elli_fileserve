@@ -23,7 +23,8 @@
 
 
 handle(Req, Config) ->
-    case unprefix(elli_request:raw_path(Req), prefix(Config)) of
+    [Path|_] = binary:split(elli_request:raw_path(Req), [<<"?">>, <<"#">>]),
+    case unprefix(Path, prefix(Config)) of
         undefined -> ignore;
         FilePath  ->
             Filename = local_path(Config, FilePath),
