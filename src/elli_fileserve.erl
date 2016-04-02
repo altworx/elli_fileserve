@@ -49,7 +49,7 @@ path(Config) -> proplists:get_value(path, Config, <<"/tmp">>).
 
 prefix(Config) -> proplists:get_value(prefix, Config, <<>>).
 
-charset(Config) -> proplists:get_value(charset, Config).
+charset(Config) -> proplists:get_value(charset, Config, "utf-8").
 
 %%
 %% Helpers
