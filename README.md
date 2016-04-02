@@ -1,21 +1,22 @@
-# Serve static files with [Elli][]
+# elli_fileserve
 
 [![Build Status](https://travis-ci.org/yurrriq/elli_fileserve.svg?branch=master)](https://travis-ci.org/yurrriq/elli_fileserve)
 
+*[`elli`][] middleware to serve static files.*
 
-This middleware allows you to serve static files with [Elli][] by mapping a
+This middleware allows you to serve static files with [`elli`][] by mapping a
 prefix to a local folder on your server. A prefix can be of arbritrary length,
 the following are all valid prefixes: `<<"/">>`, `<<"/prefix">>`,
 `<<"/some/longer/prefix/">>`, etc.
 
-[Elli]: https://github.com/knutin/elli
-
 You can also drop in your own MIME/content types
-by editing `priv/mime.types` before compiling.
+by editing [`priv/mime.types`] before compiling.
 
 Example config for serving local files in `/tmp` under `/prefix`, e.g.
 `GET /prefix/some/file.txt` will serve `/tmp/some/file.txt`.
 
+[`elli`]: https://github.com/knutin/elli
+[`priv/mime.types`]: ./priv/mime.types
 
 ```erlang
 -module(my_elli_stuff).
