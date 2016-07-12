@@ -49,6 +49,8 @@ path(Config) ->
     case proplists:get_value(path, Config, <<"/tmp">>) of
         {priv_dir, App} ->
             list_to_binary(code:priv_dir(App));
+        {priv_dir, App, L} ->
+            join(flatten([list_to_binary(code:priv_dir(App)), L]));
         Path ->
             Path
     end.
