@@ -45,7 +45,13 @@ handle_event(_, _, _) -> ok.
 
 default(Config) -> proplists:get_value(default, Config, <<"index.html">>).
 
-path(Config) -> proplists:get_value(path, Config, <<"/tmp">>).
+path(Config) ->
+    case proplists:get_value(path, Config, <<"/tmp">>) of
+        {priv_dir, App} ->
+            list_to_binary(code:priv_dir(App));
+        Path ->
+            Path
+    end.
 
 prefix(Config) -> proplists:get_value(prefix, Config, <<>>).
 
@@ -65,7 +71,7 @@ unprefix(RawPath, Prefix) ->
     PrefixSz = size(Prefix),
     case RawPath of
         <<Prefix:PrefixSz/binary, File/binary>> -> File;
-         _                                      -> undefined
+        _                                       -> undefined
     end.
 
 local_path(Config, <<"/", File/binary>>) -> local_path(Config, File);
