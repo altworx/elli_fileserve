@@ -30,7 +30,7 @@ handle(Req, Config) ->
             Filename = local_path(Config, FilePath),
             case ?MODULE:file_size(Filename) of
                 {error, illegal_path} -> {403, [], <<"Not Allowed">>};
-                {error, _Reason}      -> {404, [], <<"File Not Found">>};
+                {error, _Reason}      -> ignore;
                 {ok, Size} ->
                     {200, headers(Filename, Size, charset(Config)),
                      {file, Filename}}
