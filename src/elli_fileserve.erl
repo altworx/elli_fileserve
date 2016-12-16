@@ -32,7 +32,7 @@ handle(Req, Config) ->
                 {error, illegal_path} -> {403, [], <<"Not Allowed">>};
                 {error, _Reason}      -> ignore;
                 {ok, Size} ->
-                    {200, headers(Filename, Size, charset(Config)),
+                    {ok, headers(Filename, Size, charset(Config)),
                      {file, Filename}}
             end
     end.
